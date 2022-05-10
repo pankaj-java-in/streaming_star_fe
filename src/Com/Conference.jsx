@@ -289,7 +289,7 @@ const Conference = () => {
   // }
   var websocketURL
   if(window.location.origin.includes("https")){
-    websocketURL = "wss://stage.oodlestech.in/andmedia/Recording/websocket";
+    websocketURL = "wss://stage.oodlestech.in/Recording/websocket";
   }else{
     websocketURL = "ws://" + "13.41.68.244:5080/Recording/websocket"
   }
