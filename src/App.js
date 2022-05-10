@@ -1,11 +1,11 @@
-import './App.css';
-import Conference from './Com/Conference';
-
+import React from "react";
+import "./App.css";
+import Conference from "./Com/Conference";
 
 function App() {
   return (
     <>
-    <Conference/>
+      <Conference />
     </>
   );
 }

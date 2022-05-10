@@ -27,11 +27,16 @@ const Conference = () => {
   useEffect(()=>{
     arr = window.location.href?.split("?")[1]?.split("&");
     if(!window.location.href.includes("null")){
-      if (roomName == null) {
-        roomName = arr[0]?.split("=")[1];
-      }
-      if (streamName == null) {
-        streamName = arr[1]?.split("=")[1];
+      if(window.location.href.includes("roomName") && window.location.href.includes("streamName")){
+        if (roomName == null) {
+          roomName = arr[0]?.split("=")[1];
+        }
+        if (streamName == null) {
+          streamName = arr[1]?.split("=")[1];
+        }
+        setValueIsNotPresent(true)
+      }else{
+        alert("url is not valid")  
       }
     }else{
       alert("url is not valid")
@@ -303,10 +308,10 @@ const Conference = () => {
     websocketURL = "ws://" + "13.41.68.244:5080/Recording/websocket"
   }
   useEffect(()=>{
-    if(websocketURL){
+    if(websocketURL && valueIsPresent){
       webrtcLoader();
     }
-  },[])
+  },[valueIsPresent])
 
   const webrtcLoader = ()=>{
     webRTCAdaptor = new WebRTCAdaptor({
