@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { WebRTCAdaptor } from "./js/webrtc_adaptor";
 import { getUrlParameter } from "./js/fetch.stream.js";
-
+let urlVal;
+let arr;
 const Conference = () => {
   var webRTCAdaptor;
+  const [valueIsPresent, setValueIsNotPresent]= useState("");
   var token = getUrlParameter("token");
   var publishStreamId = getUrlParameter("streamId");
   var streamName = getUrlParameter("streamName");
@@ -12,19 +14,6 @@ const Conference = () => {
   var subscriberId = getUrlParameter("subscriberId");
   var subscriberCode = getUrlParameter("subscriberCode");
   var isChatActive = false;
-
-  if (roomName == null) {
-    roomName = "room1";
-  }
-
-  if (streamName == null) {
-    streamName = "Guest";
-  }
-
-  if (playOnly == null) {
-    playOnly = false;
-  }
-
   var roomOfStream = new Array();
   var streamIdList = new Array();
   var streamDetailsList = new Array();
@@ -34,6 +23,26 @@ const Conference = () => {
   var isCameraOff = false;
   var isChatActive = false;
   var roomTimerId = -1;
+
+  useEffect(()=>{
+    arr = window.location.href?.split("?")[1]?.split("&");
+    if(!window.location.href.includes("null")){
+      if (roomName == null) {
+        roomName = arr[0]?.split("=")[1];
+      }
+      if (streamName == null) {
+        streamName = arr[1]?.split("=")[1];
+      }
+    }else{
+      alert("url is not valid")
+    }
+  },[])
+  
+
+  
+  if (playOnly == null) {
+    playOnly = false;
+  }
 
 
   function formatAMPM(date) {
@@ -293,9 +302,10 @@ const Conference = () => {
   }else{
     websocketURL = "ws://" + "13.41.68.244:5080/Recording/websocket"
   }
-  console.log(websocketURL, "socket")
   useEffect(()=>{
-    webrtcLoader();
+    if(websocketURL){
+      webrtcLoader();
+    }
   },[])
 
   const webrtcLoader = ()=>{
