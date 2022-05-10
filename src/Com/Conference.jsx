@@ -283,7 +283,7 @@ const Conference = () => {
   var websocketURL = "ws://" + "13.41.68.244:5080/Recording/websocket";
 
   if (window.location.protocol.startsWith("https")) {
-    websocketURL = "wss://" + path;
+    websocketURL = "wss://stage.oodlestech.in/andmedia/Recording/websocket";
   }
 
   useEffect(()=>{
