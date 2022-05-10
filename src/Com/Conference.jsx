@@ -270,22 +270,30 @@ const Conference = () => {
     });
   }
 
-  var appName = window.location.pathname.substring(
-    0,
-    window.location.pathname.lastIndexOf("/") + 1
-  );
-  var path =
-    window.location.hostname +
-    ":" +
-    window.location.port +
-    appName +
-    "websocket";
-  var websocketURL = "ws://" + "13.41.68.244:5080/Recording/websocket";
-
-  if (window.location.protocol.startsWith("https")) {
+  // if(location){
+  //   var appName = location?.pathname.substring(
+  //     0,
+  //     location?.pathname.lastIndexOf("/") + 1
+  //   );
+  //   console.log(location,'sdsdgsdfg')
+  //   var path =
+  //     location?.hostname +
+  //     ":" +
+  //     location?.port +
+  //     appName +
+  //     "websocket";
+  //   var websocketURL = "wss://stage.oodlestech.in/andmedia/Recording/websocket";
+  
+  //   if (location?.protocol.startsWith("https")) {
+  //   }
+  // }
+  var websocketURL
+  if(window.location.origin.includes("https")){
     websocketURL = "wss://stage.oodlestech.in/andmedia/Recording/websocket";
+  }else{
+    websocketURL = "ws://" + "13.41.68.244:5080/Recording/websocket"
   }
-
+  console.log(websocketURL, "socket")
   useEffect(()=>{
     webrtcLoader();
   },[])
