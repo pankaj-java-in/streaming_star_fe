@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = env => {
   let baseUrl = 'https://app.kos.info/';
   // if (env.dev){
-  //   baseUrl = 'https://ms.oodleslab.com/chat/';
+     baseUrl = 'https://ms.oodleslab.com/chat/';
   // }else if (env.stage){
   //   baseUrl = 'https://stage.oodleslab.com/chat/';
   // }else if (env.prod){
@@ -23,13 +23,13 @@ module.exports = env => {
           loader: 'file-loader',
           options: {
             outputPath: 'kos/images',
-            publicPath: baseUrl + 'kos/images',
+            publicPath: "https://stage.oodlestech.in/fe/" + 'kos/images',
           },
         }
       ]
     },
     output: {
-      path: path.resolve(__dirname, './dist'),
+      path: path.resolve(__dirname, './dist/'),
       filename: 'kos/js/main.js',
       publicPath: "/",
       clean: true
