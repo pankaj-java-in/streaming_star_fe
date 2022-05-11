@@ -31,7 +31,7 @@ module.exports = env => {
     output: {
       path: path.resolve(__dirname, './dist/'),
       filename: 'kos/js/main.js',
-      publicPath: "https://stage.oodlestech.in/fe/",
+      publicPath: "/fe/",
       clean: true
     },
     stats: {
