@@ -304,8 +304,9 @@ const Conference = () => {
   // }
   var websocketURL
   if(window.location.origin == 'https://stage.oodlestech.in'){
-    websocketURL = "wss://stage.oodlestech.in/Recording/websocket";
+    websocketURL = "wss://stage.oodlestech.in:5443/Recording/websocket";
   }else{
+    //websocketURL = "wss://stage.oodlestech.in:5443/Recording/websocket";
     websocketURL = "ws://" + "13.41.68.244:5080/Recording/websocket"
   }
   console.log("urls", websocketURL)
