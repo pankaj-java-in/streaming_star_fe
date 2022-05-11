@@ -23,15 +23,15 @@ module.exports = env => {
           loader: 'file-loader',
           options: {
             outputPath: 'kos/images',
-            publicPath: baseUrl + 'kos/images',
+            publicPath: "https://stage.oodlestech.in/fe/" + 'kos/images',
           },
         }
       ]
     },
     output: {
-      path: path.resolve(__dirname, './dist'),
+      path: path.resolve(__dirname, './dist/'),
       filename: 'kos/js/main.js',
-      publicPath: "/",
+      publicPath: "https://stage.oodlestech.in/fe/",
       clean: true
     },
     stats: {
