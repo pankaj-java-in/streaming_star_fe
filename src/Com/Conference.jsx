@@ -194,7 +194,7 @@ const Conference = () => {
     div.innerHTML =
       '<div className="person" style="height:100vh;width:100vw;background:black; display:flex; justify-content:center; align-items:center"><video id="remoteVideo' +
       streamId +
-      '" className="screen" style="height:90vh"; width:90wv; position:absolute;"  autoPlay playsInline></video> </div>';
+      '" className="screen" style="height:100%; width:100%; position:absolute;"  autoPlay playsInline></video> </div>';
     document.getElementById("players").appendChild(div);
   }
 
@@ -267,10 +267,11 @@ const Conference = () => {
   };
 
   var mediaConstraints = {
-    video: {
-      width: { max: 640 },
-      height: { max: 480 },
-    },
+    video :  { aspectRatio: 16/9}, 
+    // video: {
+    //   width: { max: 640 },
+    //   height: { max: 480 },
+    // },
     audio: true,
   };
 
@@ -302,11 +303,12 @@ const Conference = () => {
   //   }
   // }
   var websocketURL
-  if(window.location.origin.includes("https")){
+  if(window.location.origin == 'https://stage.oodlestech.in'){
     websocketURL = "wss://stage.oodlestech.in/Recording/websocket";
   }else{
     websocketURL = "ws://" + "13.41.68.244:5080/Recording/websocket"
   }
+  console.log("urls", websocketURL)
   useEffect(()=>{
     if(websocketURL && valueIsPresent){
       webrtcLoader();
@@ -314,6 +316,7 @@ const Conference = () => {
   },[valueIsPresent])
 
   const webrtcLoader = ()=>{
+    console.log("webrtc loader")
     webRTCAdaptor = new WebRTCAdaptor({
       websocket_url: websocketURL,
       mediaConstraints: mediaConstraints,
